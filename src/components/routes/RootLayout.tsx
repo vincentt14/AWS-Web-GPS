@@ -5,10 +5,16 @@ import MainSidebar from "../MainSidebar";
 
 export default function RootLayout() {
   return (
-    <div className="min-h-screen bg-[#F5F5F5]">
+    <div className="min-h-screen">
       <MainHeader />
-      <MainSidebar />
-      <Outlet />
+      <div className="m-4 flex">
+        <div className="mr-2">
+          <MainSidebar />
+        </div>
+        <div className="ml-2">
+          <Outlet />
+        </div>
+      </div>
     </div>
   );
 }
