@@ -6,10 +6,10 @@ import idmLogo from "../assets/idm_logo.png";
 
 export default function MainHeader() {
   return (
-    <header className="py-4 px-[5%] text-center flex justify-between items-center border-b-[2px] border-[#ece1fa] bg-white">
-      <div>
+    <header className="sticky top-0 py-4 px-[5%] text-center flex justify-between items-center border-b-[2px] border-[#ece1fa] bg-white">
+      <Link to="/">
         <img src={idmLogo} alt="Indomaret" className="h-10 w-auto" />
-      </div>
+      </Link>
 
       <div className="flex items-center space-x-6">
         <Link to="/notifications" className="text-gray-700 hover:text-blue-500 text-2xl">

@@ -9,9 +9,9 @@ export default function () {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <div className="left-0 h-full w-fit z-10 bg-white rounded-xl shadow hover:shadow-md transition">
+    <header className="left-0 h-full w-fit z-10 bg-white rounded-xl shadow hover:shadow-md transition">
       <div className="flex flex-col items-center justify-start h-full w-20">
-        <Link to="#">
+        <Link to="/">
           <div className={`m-4 w-14 h-14 md:w-16 md:h-16 flex items-center justify-center text-2xl ${isActive("/") ? "text-blue-500" : "text-gray-700 hover:text-blue-500"}`}>
             <RiHome6Fill className="w-8 h-8" />
           </div>
@@ -24,11 +24,11 @@ export default function () {
         </Link>
 
         <Link to="/report">
-          <div className={`m-4 w-14 h-14 md:w-16 md:h-16 flex items-center justify-center text-2xl ${isActive("/report") ? "text-blue-500" : "text-gray-700 hover:text-blue-500"}`}>
+          <div className={`m-4 w-14 h-14 md:w-16 md:h-16 flex items-center justify-center text-2xl ${isActive("/report") || isActive("/reportMobil") ? "text-blue-500" : "text-gray-700 hover:text-blue-500"}`}>
             <IoPrint className="w-8 h-8" />
           </div>
         </Link>
       </div>
-    </div>
+    </header>
   );
 }
