@@ -3,7 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import { RiHome6Fill } from "react-icons/ri";
 import { IoMapSharp, IoPrint } from "react-icons/io5";
 
-export default function () {
+export default function MainSidebar() {
   const { pathname } = useLocation();
 
   const isActive = (path: string) => pathname === path;

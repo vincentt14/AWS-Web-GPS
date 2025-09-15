@@ -7,6 +7,7 @@ import RootLayout from "./components/routes/RootLayout";
 import Home from "./components/home/Home";
 import Report, { action as ReportAction } from "./components/report/Report";
 import ReportMobil, { action as ReportMobilAction } from "./components/report/ReportMobil/ReportMobil";
+import Tracking from "./components/tracking/Tracking";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/tracking",
+        element: <Tracking />,
       },
       {
         path: "/report",

@@ -1,9 +1,12 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 import MainHeader from "../MainHeader";
 import MainSidebar from "../MainSidebar";
+import TrackingSidebar from "../tracking/Navigation/TrackingSidebar";
 
 export default function RootLayout() {
+  const location = useLocation();
+
   return (
     <div className="min-h-screen">
       <MainHeader />
@@ -11,9 +14,14 @@ export default function RootLayout() {
         <div className="mr-2">
           <MainSidebar />
         </div>
-        <div className="ml-2">
+        <div className="mx-2">
           <Outlet />
         </div>
+        {location.pathname === "/tracking" && (
+          <div className="ml-2">
+            <TrackingSidebar />
+          </div>
+        )}
       </div>
     </div>
   );
