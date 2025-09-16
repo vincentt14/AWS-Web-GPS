@@ -1,7 +1,12 @@
 import { useState } from "react";
-import { TrackingBarleft, TrackingBarUp } from "../../../data/tracking_dummy";
 
-export default function TrackingSidebar() {
+import { TrackingBarleft, TrackingBarUp } from "../../../functions/trackingFunctions";
+
+type TrackingSidebarProps = {
+  onToggleExpand: () => void;
+};
+
+export default function TrackingSidebar({ onToggleExpand }: TrackingSidebarProps) {
   const [activeButtons, setActiveButtons] = useState<number[]>([]);
 
   const toggleButton = (idx: number, noToggle?: boolean) => {
@@ -32,7 +37,11 @@ export default function TrackingSidebar() {
               title={menu.title}
               onClick={() => {
                 toggleButton(idx, menu.noToggle);
-                menu.action && menu.action();
+                if (menu.id === "maximize") {
+                  onToggleExpand();
+                } else {
+                  menu.action && menu.action();
+                }
               }}
               className={`w-14 h-14 p-2 flex items-center justify-center rounded-xl shadow-md transition
                 ${isActive && !menu.noToggle ? "text-blue-500 shadow-lg bg-blue-100" : "bg-white hover:bg-gray-100"} cursor-pointer`}

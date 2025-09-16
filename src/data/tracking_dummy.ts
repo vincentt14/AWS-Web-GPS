@@ -1,42 +1,5 @@
-import { FaRegCompass, FaEye, FaCirclePlus, FaCircleMinus, FaExpand } from "react-icons/fa6";
-
-export const TrackingBarUp = [
-  {
-    title: "SOS",
-    action: () => console.log("SOS"),
-  },
-  {
-    title: "Event",
-    action: () => console.log("Event"),
-  },
-];
-
-export const TrackingBarleft = [
-  {
-    title: "Tracking aktifitas mobil",
-    icon: FaRegCompass,
-    action: () => console.log("Tracking aktifitas mobil"),
-  },
-  {
-    title: "Show/hide indomaret logo",
-    icon: FaEye,
-    action: () => console.log("Toggle indomaret logo"),
-  },
-  {
-    title: "Zoom in Map",
-    icon: FaCirclePlus,
-    action: () => console.log("Zoom in Map"),
-    noToggle: true,
-  },
-  {
-    title: "Zoom out Map",
-    icon: FaCircleMinus,
-    action: () => console.log("Zoom out Map"),
-    noToggle: true,
-  },
-  {
-    title: "Maximize Full Map on screen",
-    icon: FaExpand,
-    action: () => console.log("Maximize Full Map"),
-  },
-];
+export const AktivitasMobil = Array.from({ length: 50 }, (_, i) => ({
+  kodeMobil: `JKT ${i}${i % 5}`,
+  tanggal: `20/07/2025 22:24:05`,
+  status: i % 2 === 0 ? "Active" : "Deactive",
+}));
