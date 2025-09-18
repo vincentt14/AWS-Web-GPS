@@ -26,7 +26,7 @@ export default function TrackingList({ onToggleLeftShown }: TrackingListProps) {
   }, [searchTerm, AktivitasMobil]);
 
   return (
-    <div className="px-6 py-4 bg-white rounded-xl shadow-md w-full h-full space-y-4">
+    <div className="h-[calc(100vh-130px)] w-[385px] px-6 py-4 bg-white rounded-xl shadow-md space-y-4">
       <div className="text-center flex justify-between items-center">
         <h1 className="font-bold text-gray-700 text-xl">Aktivitas Mobil</h1>
 
@@ -48,7 +48,7 @@ export default function TrackingList({ onToggleLeftShown }: TrackingListProps) {
         />
       </div>
 
-      <div className="w-[350px] h-[calc(90vh-150px)] space-y-3 overflow-y-auto pr-2">
+      <div className="w-[340px] h-[calc(85vh-150px)] space-y-3 overflow-y-auto pr-2">
         {filteredData.map((mobil, idx) => {
           const validStatus = mobil.status === "Active" || mobil.status === "Deactive" ? mobil.status : "Deactive";
           return <CardMobil key={idx} kodeMobil={mobil.kodeMobil} tanggal={mobil.tanggal} status={validStatus} />;

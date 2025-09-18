@@ -1,26 +1,45 @@
 import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
 
-import { MdNavigateNext } from "react-icons/md";
-import TrackingList from "./modal/TrackingList";
+import TrackingSidebar from "./modal/TrackingSidebar";
+import TrackingUpperLayer from "./UpperLayer/TrackingUpperLayer";
+
+type RootLayoutContext = {
+  isExpanded: boolean;
+  handleToggleExpand: () => void;
+};
 
 export default function Tracking() {
-  const [isLeftShown, setIsLeftShown] = useState(true);
+  const { handleToggleExpand } = useOutletContext<RootLayoutContext>();
 
-  const handleLeftShown = () => {
-    setIsLeftShown(!isLeftShown);
+  const [isUpperLayer, setIsUpperLayer] = useState(false);
+  const [activeButtons, setActiveButtons] = useState<number[]>([]);
+
+  const handleToggleUpperLayer = () => {
+    setIsUpperLayer((prev) => !prev);
   };
+
+  const handleToggleButton = (idx: number, noToggle?: boolean) => {
+    if (!noToggle) {
+      setActiveButtons((prev) => (prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]));
+    }
+  };
+
+  const sidebar = <TrackingSidebar onToggleExpand={handleToggleExpand} onToggleUpperLayer={handleToggleUpperLayer} activeButtons={activeButtons} onToggleButton={handleToggleButton} />;
 
   return (
     <>
-      {!isLeftShown && (
-        <div className="h-[calc(100vh-110px)] flex items-center">
-          <button className="w-14 h-14 p-2 flex items-center justify-center rounded-xl shadow-md transition bg-white border border-gray-300 hover:text-blue-500 hover:shadow-lg hover:bg-blue-100 cursor-pointer" onClick={handleLeftShown}>
-            <MdNavigateNext className="w-8 h-8" />
-          </button>
+      <div className="relative w-full h-[calc(100vh-110px)]">
+        {/* MAP / konten utama */}
+        <div className="w-full h-full">
+          <p className="text-center">Maps</p>
         </div>
-      )}
 
-      {isLeftShown && <TrackingList onToggleLeftShown={handleLeftShown} />}
+        {!isUpperLayer && <div className="absolute top-0 right-0 z-20">{sidebar}</div>}
+
+        {/* UPPER LAYER: full overlay yang menata left / center / right */}
+        {isUpperLayer && <TrackingUpperLayer>{sidebar}</TrackingUpperLayer>}
+      </div>
     </>
   );
 }

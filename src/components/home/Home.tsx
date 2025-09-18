@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <main className="w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
         {MenuProps.map((prop) => (
           <MenuShell key={prop.modalKey} logo={prop.logo} alt={prop.alt} text={prop.text} onClick={() => setActiveModal(prop.modalKey)} />
         ))}
@@ -36,7 +36,7 @@ export default function Home() {
       )}
 
       <main className="mt-4 p-4 bg-white rounded-xl shadow-md">
-        <Dropdown options={ListKodeDC} onSelect={handleSelect} />
+        <Dropdown placeholder="KODE DC" options={ListKodeDC} onSelect={handleSelect} />
         <div className="mt-4 grid grid-cols-3 gap-4">
           <div className="col-span-1">
             <Chart data={ChartData} />

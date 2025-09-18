@@ -2,11 +2,12 @@ import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 
 type DropdownProps = {
+  placeholder: string;
   options: string[];
   onSelect: (value: string) => void;
 };
 
-export default function Dropdown({ options, onSelect }: DropdownProps) {
+export default function Dropdown({ options, onSelect, placeholder }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
@@ -21,9 +22,9 @@ export default function Dropdown({ options, onSelect }: DropdownProps) {
   }
 
   return (
-    <div className="relative w-64">
+    <div className="relative w-60">
       <button onClick={toggleDropdown} className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-700 flex justify-between items-center shadow-sm hover:border-gray-400">
-        {selectedOption || "KODE DC"}
+        {selectedOption || placeholder}
         <FaChevronDown className="ml-2 text-sm text-gray-400" />
       </button>
 

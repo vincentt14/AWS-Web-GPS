@@ -1,22 +1,15 @@
-import { useState } from "react";
-
 import { TrackingBarleft, TrackingBarUp } from "../../../functions/trackingFunctions";
 
 type TrackingSidebarProps = {
   onToggleExpand: () => void;
+  onToggleUpperLayer: () => void;
+  activeButtons: number[];
+  onToggleButton: (idx: number, noToggle?: boolean) => void;
 };
 
-export default function TrackingSidebar({ onToggleExpand }: TrackingSidebarProps) {
-  const [activeButtons, setActiveButtons] = useState<number[]>([]);
-
-  const toggleButton = (idx: number, noToggle?: boolean) => {
-    if (!noToggle) {
-      setActiveButtons((prev) => (prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]));
-    }
-  };
-
+export default function TrackingSidebar({ onToggleExpand, onToggleUpperLayer, activeButtons, onToggleButton }: TrackingSidebarProps) {
   return (
-    <div className="absolute right-4 z-10 flex flex-row items-start space-x-3">
+    <div className="flex flex-row items-start space-x-3">
       {/* Kiri */}
       <div className="flex flex-row space-x-3">
         {TrackingBarUp.map((menu, idx) => (
@@ -36,9 +29,11 @@ export default function TrackingSidebar({ onToggleExpand }: TrackingSidebarProps
               key={idx}
               title={menu.title}
               onClick={() => {
-                toggleButton(idx, menu.noToggle);
+                onToggleButton(idx, menu.noToggle);
                 if (menu.id === "maximize") {
                   onToggleExpand();
+                } else if (menu.id === "tracking") {
+                  onToggleUpperLayer();
                 } else {
                   menu.action && menu.action();
                 }
